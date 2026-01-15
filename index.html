@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>潘多拉盒子</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/html5-qrcode"></script>
+</head>
+<body>
+    <div class="background-image"></div>
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="image-container">
+            <img src="pandora.png" alt="Pandora" class="theme-image" id="pandoraBox">
+        </div>
+        <h1 id="greeting">潘多拉盒子</h1>
+        <p id="message">集齊魔法石便可把盒子打開</p>
+        
+        <!-- Rocks Collection Display -->
+        <div class="rocks-container">
+            <div class="bag-container" id="bagContainer">
+                <div class="particles" id="particles"></div>
+                <img src="justbox.png" alt="收集布袋" class="bag-image" id="bagImage">
+            </div>
+            <button class="open-bag-btn" id="openBagBtn">打開收集布袋</button>
+            <div class="rocks-content" id="rocksContent" style="display: none;">
+                <h3>已收集的魔法石</h3>
+                <div class="rocks-grid" id="rocksGrid">
+                    <!-- Rocks will be dynamically generated -->
+                </div>
+                <div class="progress-text" id="progressText">進度: 0/5</div>
+                <div class="no-rocks-message" id="noRocksMessage" style="display: none;">
+                    <p>目前還沒有收集任何魔法石</p>
+                    <button class="no-rocks-confirm-btn" id="noRocksConfirmBtn">確認</button>
+                </div>
+            </div>
+        </div>
+        
+        <button id="clickButton">收集魔法石</button>
+        <button id="openBoxButton" class="open-box-button" style="display: none;">看看裡面有甚麼</button>
+    </div>
+
+    <!-- QR Scanner Modal -->
+    <div class="scanner-modal" id="scannerModal">
+        <div class="scanner-content">
+            <div class="scanner-header">
+                <h2>掃描二維碼</h2>
+                <button class="close-scanner" id="closeScanner">✕</button>
+            </div>
+            <div id="qr-reader" style="width: 100%;"></div>
+            <p class="scanner-hint">將二維碼對準相機</p>
+        </div>
+    </div>
+
+    <!-- Success/Error Messages -->
+    <div class="message-popup" id="messagePopup"></div>
+
+    <!-- Rock Collection Info Modal -->
+    <div class="rock-info-modal" id="rockInfoModal">
+        <div class="rock-info-content">
+            <div class="rock-info-image-container">
+                <img id="rockInfoImage" src="" alt="Magic Rock" class="rock-info-image">
+            </div>
+            <h2 id="rockInfoName" class="rock-info-name"></h2>
+            <p id="rockInfoDescription" class="rock-info-description"></p>
+            <button class="rock-info-confirm-btn" id="rockInfoConfirmBtn">確認</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

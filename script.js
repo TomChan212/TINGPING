@@ -109,6 +109,11 @@ function applyLanguage(lang) {
 
 // Open settings modal
 function openSettings() {
+    if (!settingsModal) {
+        console.error('Settings modal not found');
+        return;
+    }
+    console.log('Opening settings modal');
     settingsModal.classList.add('active');
     updateSettingButtons();
 }
@@ -418,36 +423,56 @@ if (noRocksConfirmBtn) {
 }
 
 // Settings event listeners
-if (settingsBtn) {
-    settingsBtn.addEventListener('click', openSettings);
-}
+function initializeSettings() {
+    if (settingsBtn) {
+        settingsBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Settings button clicked');
+            openSettings();
+        });
+    } else {
+        console.error('Settings button not found');
+    }
 
-if (closeSettings) {
-    closeSettings.addEventListener('click', closeSettingsModal);
-}
+    if (closeSettings) {
+        closeSettings.addEventListener('click', closeSettingsModal);
+    }
 
-// Close settings when clicking outside
-if (settingsModal) {
-    settingsModal.addEventListener('click', function(e) {
-        if (e.target === settingsModal) {
-            closeSettingsModal();
-        }
+    // Close settings when clicking outside
+    if (settingsModal) {
+        settingsModal.addEventListener('click', function(e) {
+            if (e.target === settingsModal) {
+                closeSettingsModal();
+            }
+        });
+    }
+
+    // Setting option clicks
+    document.querySelectorAll('.setting-option').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const setting = this.dataset.setting;
+            const value = this.dataset.value;
+            handleSettingChange(setting, value);
+        });
     });
 }
-
-// Setting option clicks
-document.querySelectorAll('.setting-option').forEach(btn => {
-    btn.addEventListener('click', function() {
-        const setting = this.dataset.setting;
-        const value = this.dataset.value;
-        handleSettingChange(setting, value);
-    });
-});
 
 // Initialize on page load
-applySettings();
-initializeRocks();
-createParticles();
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+        applySettings();
+        initializeRocks();
+        createParticles();
+        initializeSettings();
+    });
+} else {
+    // DOM already loaded
+    applySettings();
+    initializeRocks();
+    createParticles();
+    initializeSettings();
+}
 
 // Add smooth transition to greeting
 greeting.style.transition = 'transform 0.2s ease';

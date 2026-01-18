@@ -51,7 +51,12 @@ const noRocksConfirmBtn = document.getElementById('noRocksConfirmBtn');
 const openBagBtn = document.getElementById('openBagBtn');
 const settingsBtn = document.getElementById('settingsBtn');
 const settingsModal = document.getElementById('settingsModal');
-const closeSettings = document.getElementById('closeSettings');
+const closeSettingsBtn = document.getElementById('closeSettingsBtn');
+const resetBtn = document.getElementById('resetBtn');
+const resetPasswordModal = document.getElementById('resetPasswordModal');
+const passwordInput = document.getElementById('passwordInput');
+const confirmResetBtn = document.getElementById('confirmResetBtn');
+const cancelResetBtn = document.getElementById('cancelResetBtn');
 
 // Load collected rocks from localStorage
 let collectedRocks = JSON.parse(localStorage.getItem('collectedRocks')) || [];
@@ -311,8 +316,70 @@ function openSettings() {
 
 // Close settings modal
 function closeSettingsModal() {
-    settingsModal.classList.remove('active');
+    if (settingsModal) {
+        settingsModal.classList.remove('active');
+    }
 }
+// Open reset password modal
+function openResetPasswordModal() {
+    if (resetPasswordModal) {
+        resetPasswordModal.classList.add('active');
+        if (passwordInput) {
+            passwordInput.value = '';
+            passwordInput.focus();
+        }
+    }
+}
+
+// Close reset password modal
+function closeResetPasswordModal() {
+    if (resetPasswordModal) {
+        resetPasswordModal.classList.remove('active');
+        if (passwordInput) {
+            passwordInput.value = '';
+        }
+    }
+}
+
+// Reset all collected items
+function resetAllItems() {
+    const password = passwordInput ? passwordInput.value : '';
+    
+    if (password === '0125') {
+        // Clear collected rocks
+        collectedRocks = [];
+        localStorage.removeItem('collectedRocks');
+        
+        // Reset UI
+        initializeRocks();
+        checkBoxOpening();
+        
+        // Close modals
+        closeResetPasswordModal();
+        closeSettingsModal();
+        
+        // Show success message
+        showMessage('已重置所有收集的物品', 'success');
+        
+        // Reset bag display
+        if (rocksContent) {
+            rocksContent.style.display = 'none';
+        }
+        if (openBagBtn) {
+            openBagBtn.style.display = 'block';
+        }
+        if (bagImage) {
+            bagImage.style.transform = 'scale(1)';
+        }
+    } else {
+        showMessage('密碼錯誤，請重新輸入', 'error');
+        if (passwordInput) {
+            passwordInput.value = '';
+            passwordInput.focus();
+        }
+    }
+}
+
 
 // Handle setting option click
 function handleSettingChange(setting, value) {
@@ -699,8 +766,41 @@ function initializeSettings() {
         console.error('Settings button not found');
     }
 
-    if (closeSettings) {
-        closeSettings.addEventListener('click', closeSettingsModal);
+if (closeSettingsBtn) {
+        closeSettingsBtn.addEventListener('click', closeSettingsModal);
+    }
+    
+    if (resetBtn) {
+        resetBtn.addEventListener('click', function() {
+            closeSettingsModal();
+            openResetPasswordModal();
+        });
+    }
+    
+    if (confirmResetBtn) {
+        confirmResetBtn.addEventListener('click', resetAllItems);
+    }
+    
+    if (cancelResetBtn) {
+        cancelResetBtn.addEventListener('click', closeResetPasswordModal);
+    }
+    
+    // Close reset password modal when clicking outside
+    if (resetPasswordModal) {
+        resetPasswordModal.addEventListener('click', function(e) {
+            if (e.target === resetPasswordModal) {
+                closeResetPasswordModal();
+            }
+        });
+    }
+    
+    // Allow Enter key to submit password
+    if (passwordInput) {
+        passwordInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                resetAllItems();
+            }
+        });
     }
 
     // Close settings when clicking outside

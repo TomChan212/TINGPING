@@ -113,76 +113,157 @@ function loadCustomTexts() {
     if (customTexts['openBoxButton'] && openBoxButton) openBoxButton.textContent = customTexts['openBoxButton'];
 }
 
-// Initialize text editing functionality
-function initializeTextEditing() {
-    // Make text elements editable (excluding functional buttons)
-    const editableSelectors = [
-        'h1', 'h2', 'h3', 'p', 'label', 'span'
-    ];
+// Edit mode state
+let editMode = false;
+
+// Toggle edit mode for all text
+function toggleEditMode() {
+    editMode = !editMode;
     
-    // List of button IDs that should not be editable (functional buttons)
-    const nonEditableButtons = ['settingsBtn', 'closeSettings', 'closeScanner', 'clickButton', 'openBoxButton', 'openBagBtn', 'noRocksConfirmBtn', 'rockInfoConfirmBtn'];
+    // Get all text elements including buttons
+    const allTextElements = document.querySelectorAll('h1, h2, h3, p, label, span, button, .rock-name, .rock-status, .scanner-header h2, .scanner-hint, .settings-header h2');
     
-    editableSelectors.forEach(selector => {
-        document.querySelectorAll(selector).forEach(element => {
-            element.style.cursor = 'text';
+    allTextElements.forEach(element => {
+        // Skip close buttons (X buttons) and setting option buttons
+        if (element.id === 'closeSettings' || element.id === 'closeScanner' || 
+            element.classList.contains('setting-option') || 
+            element.classList.contains('close-settings') ||
+            element.classList.contains('close-scanner') ||
+            element.textContent.trim() === '✕') {
+            return;
+        }
+        
+        if (editMode) {
+            // Enable editing
             element.setAttribute('contenteditable', 'true');
-            element.setAttribute('data-editable', 'true');
+            element.style.cursor = 'text';
+            element.style.outline = '1px dashed rgba(52, 152, 219, 0.3)';
+            element.style.minHeight = '20px';
             
-            // Add visual feedback
-            element.addEventListener('focus', function() {
-                this.style.outline = '2px dashed #3498db';
-                this.style.backgroundColor = 'rgba(52, 152, 219, 0.1)';
-            });
+            // Add visual indicator
+            if (!element.dataset.editMode) {
+                element.dataset.editMode = 'true';
+            }
             
-            element.addEventListener('blur', function() {
-                this.style.outline = 'none';
-                this.style.backgroundColor = 'transparent';
-                
-                // Save the edited text
-                const elementId = this.id || this.className || this.tagName.toLowerCase();
-                customTexts[elementId] = this.textContent;
-                localStorage.setItem('customTexts', JSON.stringify(customTexts));
-            });
-        });
-    });
-    
-    // Make buttons editable but prevent click when editing
-    document.querySelectorAll('button').forEach(button => {
-        if (!nonEditableButtons.includes(button.id)) {
-            button.style.cursor = 'text';
-            button.setAttribute('contenteditable', 'true');
-            
-            // Prevent button click when editing
-            let isEditing = false;
-            button.addEventListener('mousedown', function(e) {
-                if (e.detail === 2) { // Double click
-                    isEditing = true;
-                    setTimeout(() => { isEditing = false; }, 100);
-                }
-            });
-            
-            button.addEventListener('click', function(e) {
-                if (isEditing || document.activeElement === this) {
+            // For buttons, prevent default click behavior when in edit mode
+            if (element.tagName === 'BUTTON') {
+                const originalClick = element.onclick;
+                element.addEventListener('click', function(e) {
+                    if (document.activeElement === this) {
+                        // If already focused, allow editing
+                        return;
+                    }
+                    // Otherwise, focus for editing
                     e.preventDefault();
                     e.stopPropagation();
-                }
-            });
+                    this.focus();
+                }, true);
+            }
+        } else {
+            // Disable editing
+            element.setAttribute('contenteditable', 'false');
+            element.style.cursor = '';
+            element.style.outline = '';
+            element.style.minHeight = '';
             
-            button.addEventListener('focus', function() {
+            // Save edited text
+            const elementId = element.id || element.className || element.tagName.toLowerCase();
+            if (elementId && element.textContent) {
+                // For buttons, use their ID or a combination
+                if (element.tagName === 'BUTTON' && element.id) {
+                    customTexts[element.id] = element.textContent;
+                } else if (element.tagName === 'BUTTON' && !element.id) {
+                    customTexts[`button-${element.textContent.substring(0, 10)}`] = element.textContent;
+                } else {
+                    customTexts[elementId] = element.textContent;
+                }
+            }
+        }
+    });
+    
+    // Save all custom texts
+    localStorage.setItem('customTexts', JSON.stringify(customTexts));
+    
+    // Show/hide edit mode indicator
+    if (editMode) {
+        showEditModeIndicator();
+    } else {
+        hideEditModeIndicator();
+    }
+}
+
+// Show edit mode indicator
+function showEditModeIndicator() {
+    let indicator = document.getElementById('editModeIndicator');
+    if (!indicator) {
+        indicator = document.createElement('div');
+        indicator.id = 'editModeIndicator';
+        indicator.style.cssText = `
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            z-index: 10000;
+            font-size: 14px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        `;
+        indicator.textContent = '編輯模式：點擊任何文字即可編輯';
+        document.body.appendChild(indicator);
+    }
+}
+
+// Hide edit mode indicator
+function hideEditModeIndicator() {
+    const indicator = document.getElementById('editModeIndicator');
+    if (indicator) {
+        indicator.remove();
+    }
+}
+
+// Initialize text editing functionality
+function initializeTextEditing() {
+    // Make all text elements editable when in edit mode
+    const allTextElements = document.querySelectorAll('h1, h2, h3, p, label, span, button, .rock-name, .rock-status');
+    
+    allTextElements.forEach(element => {
+        // Skip close buttons and setting option buttons
+        if (element.id === 'closeSettings' || element.id === 'closeScanner' || 
+            element.classList.contains('setting-option') || 
+            element.classList.contains('close-settings') ||
+            element.classList.contains('close-scanner')) {
+            return;
+        }
+        
+        // Add focus/blur handlers for saving
+        element.addEventListener('focus', function() {
+            if (editMode) {
                 this.style.outline = '2px dashed #3498db';
                 this.style.backgroundColor = 'rgba(52, 152, 219, 0.1)';
-            });
+            }
+        });
+        
+        element.addEventListener('blur', function() {
+            this.style.outline = '';
+            this.style.backgroundColor = '';
             
-            button.addEventListener('blur', function() {
-                this.style.outline = 'none';
-                this.style.backgroundColor = '';
-                
-                // Save the edited text
-                const elementId = this.id || this.className;
-                if (elementId) {
-                    customTexts[elementId] = this.textContent;
-                    localStorage.setItem('customTexts', JSON.stringify(customTexts));
+            // Save the edited text
+            const elementId = this.id || this.className || this.tagName.toLowerCase();
+            if (elementId && this.textContent) {
+                customTexts[elementId] = this.textContent;
+                localStorage.setItem('customTexts', JSON.stringify(customTexts));
+            }
+        });
+        
+        // Prevent default button behavior when in edit mode
+        if (element.tagName === 'BUTTON') {
+            element.addEventListener('click', function(e) {
+                if (editMode && document.activeElement !== this) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.focus();
                 }
             });
         }
@@ -207,15 +288,21 @@ function closeSettingsModal() {
 
 // Handle setting option click
 function handleSettingChange(setting, value) {
-    settings[setting] = value;
-    localStorage.setItem('settings', JSON.stringify(settings));
-    
     if (setting === 'fontSize') {
+        // Apply font size first
+        settings[setting] = value;
+        localStorage.setItem('settings', JSON.stringify(settings));
         document.body.className = document.body.className.replace(/font-size-\w+/g, '');
         document.body.classList.add(`font-size-${value}`);
+        
+        // Update setting buttons
+        updateSettingButtons();
+        
+        // Enable edit mode after font size change
+        if (!editMode) {
+            toggleEditMode();
+        }
     }
-    
-    updateSettingButtons();
 }
 
 // Initialize the rocks display

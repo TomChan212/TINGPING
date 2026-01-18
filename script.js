@@ -147,16 +147,24 @@ function toggleEditMode() {
             
             // For buttons, prevent default click behavior when in edit mode
             if (element.tagName === 'BUTTON') {
-                const originalClick = element.onclick;
-                element.addEventListener('click', function(e) {
-                    if (document.activeElement === this) {
-                        // If already focused, allow editing
-                        return;
+                // Remove any existing click handlers temporarily
+                const buttonId = element.id;
+                element.dataset.originalOnclick = element.onclick ? 'true' : 'false';
+                
+                // Add click handler for edit mode
+                element.addEventListener('click', function editModeClickHandler(e) {
+                    if (editMode) {
+                        // In edit mode, focus the button for editing
+                        e.preventDefault();
+                        e.stopPropagation();
+                        this.focus();
+                        // Select text for easier editing
+                        const range = document.createRange();
+                        range.selectNodeContents(this);
+                        const selection = window.getSelection();
+                        selection.removeAllRanges();
+                        selection.addRange(range);
                     }
-                    // Otherwise, focus for editing
-                    e.preventDefault();
-                    e.stopPropagation();
-                    this.focus();
                 }, true);
             }
         } else {
@@ -167,15 +175,21 @@ function toggleEditMode() {
             element.style.minHeight = '';
             
             // Save edited text
-            const elementId = element.id || element.className || element.tagName.toLowerCase();
-            if (elementId && element.textContent) {
-                // For buttons, use their ID or a combination
+            if (element.textContent) {
+                // For buttons, use their ID
                 if (element.tagName === 'BUTTON' && element.id) {
-                    customTexts[element.id] = element.textContent;
+                    customTexts[element.id] = element.textContent.trim();
                 } else if (element.tagName === 'BUTTON' && !element.id) {
-                    customTexts[`button-${element.textContent.substring(0, 10)}`] = element.textContent;
+                    // For buttons without ID, try to identify by class or text
+                    const buttonClass = element.className;
+                    if (buttonClass) {
+                        customTexts[buttonClass] = element.textContent.trim();
+                    }
                 } else {
-                    customTexts[elementId] = element.textContent;
+                    const elementId = element.id || element.className || element.tagName.toLowerCase();
+                    if (elementId) {
+                        customTexts[elementId] = element.textContent.trim();
+                    }
                 }
             }
         }
@@ -259,13 +273,27 @@ function initializeTextEditing() {
         
         // Prevent default button behavior when in edit mode
         if (element.tagName === 'BUTTON') {
+            // Store original onclick if exists
+            if (element.onclick) {
+                element.dataset.originalOnclick = 'true';
+            }
+            
             element.addEventListener('click', function(e) {
-                if (editMode && document.activeElement !== this) {
+                if (editMode) {
+                    // In edit mode, focus the button for editing instead of executing click
                     e.preventDefault();
                     e.stopPropagation();
                     this.focus();
+                    // Select all text for easier editing
+                    if (window.getSelection) {
+                        const selection = window.getSelection();
+                        const range = document.createRange();
+                        range.selectNodeContents(this);
+                        selection.removeAllRanges();
+                        selection.addRange(range);
+                    }
                 }
-            });
+            }, true);
         }
     });
 }
@@ -289,7 +317,7 @@ function closeSettingsModal() {
 // Handle setting option click
 function handleSettingChange(setting, value) {
     if (setting === 'fontSize') {
-        // Apply font size first
+        // Apply font size immediately
         settings[setting] = value;
         localStorage.setItem('settings', JSON.stringify(settings));
         document.body.className = document.body.className.replace(/font-size-\w+/g, '');
@@ -298,10 +326,8 @@ function handleSettingChange(setting, value) {
         // Update setting buttons
         updateSettingButtons();
         
-        // Enable edit mode after font size change
-        if (!editMode) {
-            toggleEditMode();
-        }
+        // Font size is automatically applied via CSS classes
+        // No need for edit mode or further processing
     }
 }
 

@@ -67,7 +67,7 @@ body {
     border: none;
     width: 44px;
     height: 44px;
-    border-radius: 8px;
+    border-radius: 4px;
     font-size: 1.3rem;
     cursor: pointer;
     display: flex;

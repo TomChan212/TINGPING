@@ -1,39 +1,144 @@
+// Translations
+const translations = {
+    traditional: {
+        title: '潘多拉盒子',
+        greeting: '潘多拉盒子',
+        message: '集齊魔法石便可把盒子打開',
+        settingsBtn: '設定',
+        openBagBtn: '打開收集布袋',
+        collectedItems: '已收集的物品',
+        progress: '進度',
+        emptyMessage: '空無一物',
+        confirm: '確認',
+        collectButton: '收集魔法石',
+        openBoxButton: '看看裡面有甚麼',
+        scanQR: '掃描二維碼',
+        scanHint: '將二維碼對準相機',
+        settings: '設定',
+        fontSize: '字體大細',
+        language: '語言',
+        large: '大',
+        medium: '中',
+        small: '細',
+        traditional: '繁',
+        simplified: '簡',
+        english: 'Eng',
+        boxOpened: '恭喜！潘多拉盒子已打開！',
+        allCollected: '所有魔法石已收集完成！',
+        alreadyCollected: '已經收集過了！',
+        invalidRock: '無效的魔法石！',
+        cameraError: '無法啟動相機，請檢查權限設定',
+        rocks: {
+            Thunderheart: { name: '雷霆魔法石', description: '蘊含狂暴雷電之力，能瞬間喚醒沉睡的力量，象徵速度與決斷。' },
+            Frostveil: { name: '冰霜魔法石', description: '散發極寒氣息，可凍結時間般地減緩一切變化，象徵冷靜與理智。' },
+            Vinescourge: { name: '毒藤魔法石', description: '以暗綠毒霧纏繞，能腐蝕束縛敵人，也提醒持有者慎用其力。' },
+            'Shadow Abyss': { name: '暗影魔法石', description: '如深淵般吸收光芒，讓持有者在黑暗中隱匿身形，象徵秘密與未知。' },
+            'Lumen Grace': { name: '光輝魔法石', description: '綻放聖潔光芒，能淨化邪惡與治癒創傷，象徵希望與重生。' }
+        },
+        status: '已收集'
+    },
+    simplified: {
+        title: '潘多拉盒子',
+        greeting: '潘多拉盒子',
+        message: '集齐魔法石便可把盒子打开',
+        settingsBtn: '设定',
+        openBagBtn: '打开收集布袋',
+        collectedItems: '已收集的物品',
+        progress: '进度',
+        emptyMessage: '空无一物',
+        confirm: '确认',
+        collectButton: '收集魔法石',
+        openBoxButton: '看看里面有什么',
+        scanQR: '扫描二维码',
+        scanHint: '将二维码对准相机',
+        settings: '设定',
+        fontSize: '字体大小',
+        language: '语言',
+        large: '大',
+        medium: '中',
+        small: '细',
+        traditional: '繁',
+        simplified: '简',
+        english: 'Eng',
+        boxOpened: '恭喜！潘多拉盒子已打开！',
+        allCollected: '所有魔法石已收集完成！',
+        alreadyCollected: '已经收集过了！',
+        invalidRock: '无效的魔法石！',
+        cameraError: '无法启动相机，请检查权限设定',
+        rocks: {
+            Thunderheart: { name: '雷霆魔法石', description: '蕴含狂暴雷电之力，能瞬间唤醒沉睡的力量，象征速度与决断。' },
+            Frostveil: { name: '冰霜魔法石', description: '散发极寒气息，可冻结时间般地减缓一切变化，象征冷静与理智。' },
+            Vinescourge: { name: '毒藤魔法石', description: '以暗绿毒雾缠绕，能腐蚀束缚敌人，也提醒持有者慎用其力。' },
+            'Shadow Abyss': { name: '暗影魔法石', description: '如深渊般吸收光芒，让持有者在黑暗中隐匿身形，象征秘密与未知。' },
+            'Lumen Grace': { name: '光辉魔法石', description: '绽放圣洁光芒，能净化邪恶与治愈创伤，象征希望与重生。' }
+        },
+        status: '已收集'
+    },
+    english: {
+        title: 'Pandora\'s Box',
+        greeting: 'Pandora\'s Box',
+        message: 'Collect all magic stones to open the box',
+        settingsBtn: 'Settings',
+        openBagBtn: 'Open Collection Bag',
+        collectedItems: 'Collected Items',
+        progress: 'Progress',
+        emptyMessage: 'Empty',
+        confirm: 'Confirm',
+        collectButton: 'Collect Magic Stone',
+        openBoxButton: 'See What\'s Inside',
+        scanQR: 'Scan QR Code',
+        scanHint: 'Point camera at QR code',
+        settings: 'Settings',
+        fontSize: 'Font Size',
+        language: 'Language',
+        large: 'Large',
+        medium: 'Medium',
+        small: 'Small',
+        traditional: 'Traditional',
+        simplified: 'Simplified',
+        english: 'English',
+        boxOpened: 'Congratulations! Pandora\'s Box is opened!',
+        allCollected: 'All magic stones collected!',
+        alreadyCollected: 'already collected!',
+        invalidRock: 'Invalid magic stone!',
+        cameraError: 'Unable to start camera, please check permissions',
+        rocks: {
+            Thunderheart: { name: 'Thunderheart Stone', description: 'Contains violent thunder power, can instantly awaken dormant strength, symbolizing speed and determination.' },
+            Frostveil: { name: 'Frostveil Stone', description: 'Emits extreme cold, can slow down all changes like freezing time, symbolizing calmness and reason.' },
+            Vinescourge: { name: 'Vinescourge Stone', description: 'Wrapped in dark green toxic mist, can corrode and bind enemies, reminding the holder to use its power carefully.' },
+            'Shadow Abyss': { name: 'Shadow Abyss Stone', description: 'Absorbs light like an abyss, allows the holder to hide in darkness, symbolizing secrets and the unknown.' },
+            'Lumen Grace': { name: 'Lumen Grace Stone', description: 'Radiates holy light, can purify evil and heal wounds, symbolizing hope and rebirth.' }
+        },
+        status: 'Collected'
+    }
+};
+
 // Magic Rocks Configuration
 const MAGIC_ROCKS = [
     { 
         key: 'Thunderheart', 
-        name: '雷霆魔法石', 
         icon: '⚡',
-        image: 'Thunderheart.png',
-        description: '蘊含狂暴雷電之力，能瞬間喚醒沉睡的力量，象徵速度與決斷。'
+        image: 'Thunderheart.png'
     },
     { 
         key: 'Frostveil', 
-        name: '冰霜魔法石', 
         icon: '❄️',
-        image: 'Frostveil.png',
-        description: '散發極寒氣息，可凍結時間般地減緩一切變化，象徵冷靜與理智。'
+        image: 'Frostveil.png'
     },
     { 
         key: 'Vinescourge', 
-        name: '毒藤魔法石', 
         icon: '🌿',
-        image: 'Vinescourge.png',
-        description: '以暗綠毒霧纏繞，能腐蝕束縛敵人，也提醒持有者慎用其力。'
+        image: 'Vinescourge.png'
     },
     { 
         key: 'Shadow Abyss', 
-        name: '暗影魔法石', 
         icon: '🌑',
-        image: 'Shadow Abyss.png',
-        description: '如深淵般吸收光芒，讓持有者在黑暗中隱匿身形，象徵秘密與未知。'
+        image: 'Shadow Abyss.png'
     },
     { 
         key: 'Lumen Grace', 
-        name: '光輝魔法石', 
         icon: '✨',
-        image: 'Lumen Grace.png',
-        description: '綻放聖潔光芒，能淨化邪惡與治癒創傷，象徵希望與重生。'
+        image: 'Lumen Grace.png'
     }
 ];
 
@@ -99,12 +204,79 @@ function updateSettingButtons() {
     });
 }
 
+// Get current translation
+function getTranslation(key) {
+    const lang = settings.language || 'traditional';
+    const t = translations[lang];
+    if (!t) return key;
+    
+    // Handle nested keys like rocks.Thunderheart.name
+    const keys = key.split('.');
+    let value = t;
+    for (const k of keys) {
+        value = value?.[k];
+    }
+    return value || key;
+}
+
 // Apply language
 function applyLanguage(lang) {
-    // This will be populated with actual translations
-    // For now, just store the setting
     settings.language = lang;
     localStorage.setItem('settings', JSON.stringify(settings));
+    
+    const t = translations[lang] || translations.traditional;
+    
+    // Update page title
+    document.title = t.title;
+    
+    // Update static text elements
+    if (settingsBtn) settingsBtn.textContent = t.settingsBtn;
+    if (greeting) greeting.textContent = t.greeting;
+    if (message) message.textContent = t.message;
+    if (openBagBtn) openBagBtn.textContent = t.openBagBtn;
+    if (button) button.textContent = t.collectButton;
+    if (openBoxButton) openBoxButton.textContent = t.openBoxButton;
+    
+    // Update scanner modal
+    const scannerTitle = document.querySelector('.scanner-header h2');
+    if (scannerTitle) scannerTitle.textContent = t.scanQR;
+    const scannerHint = document.querySelector('.scanner-hint');
+    if (scannerHint) scannerHint.textContent = t.scanHint;
+    
+    // Update settings modal
+    const settingsTitle = document.querySelector('.settings-header h2');
+    if (settingsTitle) settingsTitle.textContent = t.settings;
+    const fontSizeLabel = document.querySelectorAll('.setting-item label')[0];
+    if (fontSizeLabel) fontSizeLabel.textContent = t.fontSize;
+    const languageLabel = document.querySelectorAll('.setting-item label')[1];
+    if (languageLabel) languageLabel.textContent = t.language;
+    
+    // Update setting option buttons
+    document.querySelectorAll('.setting-option[data-setting="fontSize"]').forEach((btn, index) => {
+        const values = ['large', 'medium', 'small'];
+        btn.textContent = t[values[index]];
+    });
+    
+    document.querySelectorAll('.setting-option[data-setting="language"]').forEach((btn, index) => {
+        const values = ['traditional', 'simplified', 'english'];
+        btn.textContent = t[values[index]];
+    });
+    
+    // Update collected items header
+    const collectedHeader = document.querySelector('.rocks-content h3');
+    if (collectedHeader) collectedHeader.textContent = t.collectedItems;
+    
+    // Update empty message
+    const emptyMsg = document.querySelector('.no-rocks-message p');
+    if (emptyMsg) emptyMsg.textContent = t.emptyMessage;
+    if (noRocksConfirmBtn) noRocksConfirmBtn.textContent = t.confirm;
+    if (rockInfoConfirmBtn) rockInfoConfirmBtn.textContent = t.confirm;
+    
+    // Reinitialize rocks display to update names
+    initializeRocks();
+    
+    // Update progress text
+    updateProgress();
 }
 
 // Open settings modal
@@ -141,6 +313,7 @@ function handleSettingChange(setting, value) {
 // Initialize the rocks display
 function initializeRocks() {
     rocksGrid.innerHTML = '';
+    const t = translations[settings.language] || translations.traditional;
     
     // Only show collected rocks
     MAGIC_ROCKS.forEach((rock, index) => {
@@ -152,10 +325,12 @@ function initializeRocks() {
             rockSlot.className = 'rock-slot collected';
             rockSlot.dataset.rock = rock.key;
             
+            const rockInfo = t.rocks[rock.key] || { name: rock.key, description: '' };
+            
             rockSlot.innerHTML = `
                 <div class="rock-icon">${rock.icon}</div>
-                <div class="rock-name">${rock.name}</div>
-                <div class="rock-status">已收集</div>
+                <div class="rock-name">${rockInfo.name}</div>
+                <div class="rock-status">${t.status}</div>
             `;
             
             // Add click event for collected rocks
@@ -183,14 +358,16 @@ function initializeRocks() {
 // Update progress text
 function updateProgress() {
     const count = collectedRocks.length;
-    progressText.textContent = `進度: ${count}/5`;
+    const t = translations[settings.language] || translations.traditional;
+    progressText.textContent = `${t.progress}: ${count}/5`;
 }
 
 // Check if box should open
 function checkBoxOpening() {
     if (collectedRocks.length === 5) {
         pandoraBox.classList.add('box-open');
-        message.textContent = '恭喜！潘多拉盒子已打開！';
+        const t = translations[settings.language] || translations.traditional;
+        message.textContent = t.boxOpened;
         button.style.display = 'none';
         openBoxButton.style.display = 'block';
     } else {
@@ -213,10 +390,13 @@ function showRockInfo(rock) {
     // Hide confirm button initially
     rockInfoConfirmBtn.style.display = 'none';
     
+    const t = translations[settings.language] || translations.traditional;
+    const rockInfo = t.rocks[rock.key] || { name: rock.key, description: '' };
+    
     // Set content
-    rockInfoImage.alt = rock.name;
-    rockInfoName.textContent = rock.name;
-    rockInfoDescription.textContent = rock.description;
+    rockInfoImage.alt = rockInfo.name;
+    rockInfoName.textContent = rockInfo.name;
+    rockInfoDescription.textContent = rockInfo.description;
     
     // Show modal first
     rockInfoModal.classList.add('active');
@@ -266,7 +446,8 @@ function openScanner() {
         }
     ).catch((err) => {
         console.error("Unable to start scanning", err);
-        showMessage('無法啟動相機，請檢查權限設定', 'error');
+        const t = translations[settings.language] || translations.traditional;
+        showMessage(t.cameraError, 'error');
         closeScannerModal();
     });
 }
@@ -296,9 +477,12 @@ function handleScannedCode(scannedText) {
     );
     
     if (rock) {
+        const t = translations[settings.language] || translations.traditional;
+        const rockInfo = t.rocks[rock.key] || { name: rock.key };
+        
         // Check if already collected
         if (collectedRocks.includes(rock.key)) {
-            showMessage(`${rock.name} 已經收集過了！`, 'info');
+            showMessage(`${rockInfo.name} ${t.alreadyCollected}`, 'info');
             return;
         }
         
@@ -318,14 +502,16 @@ function handleScannedCode(scannedText) {
         }, 500);
         
     } else {
-        showMessage('無效的魔法石！', 'error');
+        const t = translations[settings.language] || translations.traditional;
+        showMessage(t.invalidRock, 'error');
     }
 }
 
 // Event Listeners
 button.addEventListener('click', function() {
     if (collectedRocks.length >= 5) {
-        showMessage('所有魔法石已收集完成！', 'success');
+        const t = translations[settings.language] || translations.traditional;
+        showMessage(t.allCollected, 'success');
         return;
     }
     openScanner();

@@ -74,22 +74,21 @@
     <!-- Settings Modal -->
     <div class="settings-modal" id="settingsModal">
         <div class="settings-content">
-            <div class="settings-header">
-                <h2>設定</h2>
-                <button class="close-settings" id="closeSettings">✕</button>
-            </div>
-            <div class="settings-body">
-                <div class="setting-item">
-                    <label>字體大細</label>
-                    <div class="setting-options">
-                        <button class="setting-option" data-setting="fontSize" data-value="large">大</button>
-                        <button class="setting-option" data-setting="fontSize" data-value="medium">中</button>
-                        <button class="setting-option" data-setting="fontSize" data-value="small">細</button>
-                    </div>
-                </div>
-                <div class="setting-item">
-                    <p style="font-size: 0.9rem; color: #666; margin-top: 1rem;">提示：雙擊頁面上的任何文字即可編輯</p>
-                </div>
+            <h2>設定</h2>
+            <button class="reset-btn" id="resetBtn">重新開始</button>
+            <button class="close-settings-btn" id="closeSettingsBtn">關閉</button>
+        </div>
+    </div>
+
+    <!-- Reset Password Modal -->
+    <div class="reset-password-modal" id="resetPasswordModal">
+        <div class="reset-password-content">
+            <h2>重置確認</h2>
+            <p class="reset-hint">請找工作人員協助</p>
+            <input type="password" id="passwordInput" class="password-input" placeholder="輸入密碼" maxlength="4">
+            <div class="reset-buttons">
+                <button class="confirm-reset-btn" id="confirmResetBtn">確認重置</button>
+                <button class="cancel-reset-btn" id="cancelResetBtn">取消</button>
             </div>
         </div>
     </div>

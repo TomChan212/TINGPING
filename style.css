@@ -60,8 +60,8 @@ body {
 
 .settings-btn {
     position: absolute;
-    top: 1rem;
-    left: 1rem;
+    top: 0.75rem;
+    left: 0.75rem;
     background: rgba(44, 62, 80, 0.8);
     color: white;
     border: none;
@@ -79,6 +79,9 @@ body {
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
     user-select: none;
+    margin: 0;
+    padding: 0;
+    text-align: left;
 }
 
 .settings-btn:hover {

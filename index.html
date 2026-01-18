@@ -70,6 +70,34 @@
             <button class="rock-info-confirm-btn" id="rockInfoConfirmBtn">確認</button>
         </div>
     </div>
+
+    <!-- Settings Modal -->
+    <div class="settings-modal" id="settingsModal">
+        <div class="settings-content">
+            <div class="settings-header">
+                <h2>設定</h2>
+                <button class="close-settings" id="closeSettings">✕</button>
+            </div>
+            <div class="settings-body">
+                <div class="setting-item">
+                    <label>字體大細</label>
+                    <div class="setting-options">
+                        <button class="setting-option" data-setting="fontSize" data-value="large">大</button>
+                        <button class="setting-option" data-setting="fontSize" data-value="medium">中</button>
+                        <button class="setting-option" data-setting="fontSize" data-value="small">細</button>
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <label>語言</label>
+                    <div class="setting-options">
+                        <button class="setting-option" data-setting="language" data-value="traditional">繁</button>
+                        <button class="setting-option" data-setting="language" data-value="simplified">簡</button>
+                        <button class="setting-option" data-setting="language" data-value="english">Eng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>

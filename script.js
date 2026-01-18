@@ -59,10 +59,79 @@ const rocksContent = document.getElementById('rocksContent');
 const noRocksMessage = document.getElementById('noRocksMessage');
 const noRocksConfirmBtn = document.getElementById('noRocksConfirmBtn');
 const openBagBtn = document.getElementById('openBagBtn');
+const settingsBtn = document.getElementById('settingsBtn');
+const settingsModal = document.getElementById('settingsModal');
+const closeSettings = document.getElementById('closeSettings');
 
 // Load collected rocks from localStorage
 let collectedRocks = JSON.parse(localStorage.getItem('collectedRocks')) || [];
 let qrScanner = null;
+
+// Load settings from localStorage
+let settings = JSON.parse(localStorage.getItem('settings')) || {
+    fontSize: 'medium',
+    language: 'traditional'
+};
+
+// Apply saved settings on page load
+function applySettings() {
+    // Apply font size
+    document.body.className = document.body.className.replace(/font-size-\w+/g, '');
+    document.body.classList.add(`font-size-${settings.fontSize}`);
+    
+    // Apply language (will be implemented with text content)
+    applyLanguage(settings.language);
+    
+    // Update active buttons
+    updateSettingButtons();
+}
+
+// Update active state of setting buttons
+function updateSettingButtons() {
+    document.querySelectorAll('.setting-option').forEach(btn => {
+        const setting = btn.dataset.setting;
+        const value = btn.dataset.value;
+        if (settings[setting] === value) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+}
+
+// Apply language
+function applyLanguage(lang) {
+    // This will be populated with actual translations
+    // For now, just store the setting
+    settings.language = lang;
+    localStorage.setItem('settings', JSON.stringify(settings));
+}
+
+// Open settings modal
+function openSettings() {
+    settingsModal.classList.add('active');
+    updateSettingButtons();
+}
+
+// Close settings modal
+function closeSettingsModal() {
+    settingsModal.classList.remove('active');
+}
+
+// Handle setting option click
+function handleSettingChange(setting, value) {
+    settings[setting] = value;
+    localStorage.setItem('settings', JSON.stringify(settings));
+    
+    if (setting === 'fontSize') {
+        document.body.className = document.body.className.replace(/font-size-\w+/g, '');
+        document.body.classList.add(`font-size-${value}`);
+    } else if (setting === 'language') {
+        applyLanguage(value);
+    }
+    
+    updateSettingButtons();
+}
 
 // Initialize the rocks display
 function initializeRocks() {
@@ -348,7 +417,35 @@ if (noRocksConfirmBtn) {
     noRocksConfirmBtn.addEventListener('click', closeNoRocksMessage);
 }
 
+// Settings event listeners
+if (settingsBtn) {
+    settingsBtn.addEventListener('click', openSettings);
+}
+
+if (closeSettings) {
+    closeSettings.addEventListener('click', closeSettingsModal);
+}
+
+// Close settings when clicking outside
+if (settingsModal) {
+    settingsModal.addEventListener('click', function(e) {
+        if (e.target === settingsModal) {
+            closeSettingsModal();
+        }
+    });
+}
+
+// Setting option clicks
+document.querySelectorAll('.setting-option').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const setting = this.dataset.setting;
+        const value = this.dataset.value;
+        handleSettingChange(setting, value);
+    });
+});
+
 // Initialize on page load
+applySettings();
 initializeRocks();
 createParticles();
 

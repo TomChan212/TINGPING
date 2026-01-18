@@ -1,118 +1,3 @@
-// Translations
-const translations = {
-    traditional: {
-        title: '潘多拉盒子',
-        greeting: '潘多拉盒子',
-        message: '集齊魔法石便可把盒子打開',
-        settingsBtn: '設定',
-        openBagBtn: '打開收集布袋',
-        collectedItems: '已收集的物品',
-        progress: '進度',
-        emptyMessage: '空無一物',
-        confirm: '確認',
-        collectButton: '收集魔法石',
-        openBoxButton: '看看裡面有甚麼',
-        scanQR: '掃描二維碼',
-        scanHint: '將二維碼對準相機',
-        settings: '設定',
-        fontSize: '字體大細',
-        language: '語言',
-        large: '大',
-        medium: '中',
-        small: '細',
-        traditional: '繁',
-        simplified: '簡',
-        english: 'Eng',
-        boxOpened: '恭喜！潘多拉盒子已打開！',
-        allCollected: '所有魔法石已收集完成！',
-        alreadyCollected: '已經收集過了！',
-        invalidRock: '無效的魔法石！',
-        cameraError: '無法啟動相機，請檢查權限設定',
-        rocks: {
-            Thunderheart: { name: '雷霆魔法石', description: '蘊含狂暴雷電之力，能瞬間喚醒沉睡的力量，象徵速度與決斷。' },
-            Frostveil: { name: '冰霜魔法石', description: '散發極寒氣息，可凍結時間般地減緩一切變化，象徵冷靜與理智。' },
-            Vinescourge: { name: '毒藤魔法石', description: '以暗綠毒霧纏繞，能腐蝕束縛敵人，也提醒持有者慎用其力。' },
-            'Shadow Abyss': { name: '暗影魔法石', description: '如深淵般吸收光芒，讓持有者在黑暗中隱匿身形，象徵秘密與未知。' },
-            'Lumen Grace': { name: '光輝魔法石', description: '綻放聖潔光芒，能淨化邪惡與治癒創傷，象徵希望與重生。' }
-        },
-        status: '已收集'
-    },
-    simplified: {
-        title: '潘多拉盒子',
-        greeting: '潘多拉盒子',
-        message: '集齐魔法石便可把盒子打开',
-        settingsBtn: '设定',
-        openBagBtn: '打开收集布袋',
-        collectedItems: '已收集的物品',
-        progress: '进度',
-        emptyMessage: '空无一物',
-        confirm: '确认',
-        collectButton: '收集魔法石',
-        openBoxButton: '看看里面有什么',
-        scanQR: '扫描二维码',
-        scanHint: '将二维码对准相机',
-        settings: '设定',
-        fontSize: '字体大小',
-        language: '语言',
-        large: '大',
-        medium: '中',
-        small: '细',
-        traditional: '繁',
-        simplified: '简',
-        english: 'Eng',
-        boxOpened: '恭喜！潘多拉盒子已打开！',
-        allCollected: '所有魔法石已收集完成！',
-        alreadyCollected: '已经收集过了！',
-        invalidRock: '无效的魔法石！',
-        cameraError: '无法启动相机，请检查权限设定',
-        rocks: {
-            Thunderheart: { name: '雷霆魔法石', description: '蕴含狂暴雷电之力，能瞬间唤醒沉睡的力量，象征速度与决断。' },
-            Frostveil: { name: '冰霜魔法石', description: '散发极寒气息，可冻结时间般地减缓一切变化，象征冷静与理智。' },
-            Vinescourge: { name: '毒藤魔法石', description: '以暗绿毒雾缠绕，能腐蚀束缚敌人，也提醒持有者慎用其力。' },
-            'Shadow Abyss': { name: '暗影魔法石', description: '如深渊般吸收光芒，让持有者在黑暗中隐匿身形，象征秘密与未知。' },
-            'Lumen Grace': { name: '光辉魔法石', description: '绽放圣洁光芒，能净化邪恶与治愈创伤，象征希望与重生。' }
-        },
-        status: '已收集'
-    },
-    english: {
-        title: 'Pandora\'s Box',
-        greeting: 'Pandora\'s Box',
-        message: 'Collect all magic stones to open the box',
-        settingsBtn: 'Settings',
-        openBagBtn: 'Open Collection Bag',
-        collectedItems: 'Collected Items',
-        progress: 'Progress',
-        emptyMessage: 'Empty',
-        confirm: 'Confirm',
-        collectButton: 'Collect Magic Stone',
-        openBoxButton: 'See What\'s Inside',
-        scanQR: 'Scan QR Code',
-        scanHint: 'Point camera at QR code',
-        settings: 'Settings',
-        fontSize: 'Font Size',
-        language: 'Language',
-        large: 'Large',
-        medium: 'Medium',
-        small: 'Small',
-        traditional: 'Traditional',
-        simplified: 'Simplified',
-        english: 'English',
-        boxOpened: 'Congratulations! Pandora\'s Box is opened!',
-        allCollected: 'All magic stones collected!',
-        alreadyCollected: 'already collected!',
-        invalidRock: 'Invalid magic stone!',
-        cameraError: 'Unable to start camera, please check permissions',
-        rocks: {
-            Thunderheart: { name: 'Thunderheart Stone', description: 'Contains violent thunder power, can instantly awaken dormant strength, symbolizing speed and determination.' },
-            Frostveil: { name: 'Frostveil Stone', description: 'Emits extreme cold, can slow down all changes like freezing time, symbolizing calmness and reason.' },
-            Vinescourge: { name: 'Vinescourge Stone', description: 'Wrapped in dark green toxic mist, can corrode and bind enemies, reminding the holder to use its power carefully.' },
-            'Shadow Abyss': { name: 'Shadow Abyss Stone', description: 'Absorbs light like an abyss, allows the holder to hide in darkness, symbolizing secrets and the unknown.' },
-            'Lumen Grace': { name: 'Lumen Grace Stone', description: 'Radiates holy light, can purify evil and heal wounds, symbolizing hope and rebirth.' }
-        },
-        status: 'Collected'
-    }
-};
-
 // Magic Rocks Configuration
 const MAGIC_ROCKS = [
     { 
@@ -174,9 +59,11 @@ let qrScanner = null;
 
 // Load settings from localStorage
 let settings = JSON.parse(localStorage.getItem('settings')) || {
-    fontSize: 'medium',
-    language: 'traditional'
+    fontSize: 'medium'
 };
+
+// Load custom text content from localStorage
+let customTexts = JSON.parse(localStorage.getItem('customTexts')) || {};
 
 // Apply saved settings on page load
 function applySettings() {
@@ -184,11 +71,14 @@ function applySettings() {
     document.body.className = document.body.className.replace(/font-size-\w+/g, '');
     document.body.classList.add(`font-size-${settings.fontSize}`);
     
-    // Apply language (will be implemented with text content)
-    applyLanguage(settings.language);
+    // Load custom texts
+    loadCustomTexts();
     
     // Update active buttons
     updateSettingButtons();
+    
+    // Initialize text editing
+    initializeTextEditing();
 }
 
 // Update active state of setting buttons
@@ -204,79 +94,99 @@ function updateSettingButtons() {
     });
 }
 
-// Get current translation
-function getTranslation(key) {
-    const lang = settings.language || 'traditional';
-    const t = translations[lang];
-    if (!t) return key;
+// Load custom texts from localStorage
+function loadCustomTexts() {
+    // Load custom text for each element if exists
+    Object.keys(customTexts).forEach(elementId => {
+        const element = document.getElementById(elementId);
+        if (element && customTexts[elementId]) {
+            element.textContent = customTexts[elementId];
+        }
+    });
     
-    // Handle nested keys like rocks.Thunderheart.name
-    const keys = key.split('.');
-    let value = t;
-    for (const k of keys) {
-        value = value?.[k];
-    }
-    return value || key;
+    // Load custom text for elements without ID
+    if (customTexts['greeting'] && greeting) greeting.textContent = customTexts['greeting'];
+    if (customTexts['message'] && message) message.textContent = customTexts['message'];
+    if (customTexts['settingsBtn'] && settingsBtn) settingsBtn.textContent = customTexts['settingsBtn'];
+    if (customTexts['openBagBtn'] && openBagBtn) openBagBtn.textContent = customTexts['openBagBtn'];
+    if (customTexts['clickButton'] && button) button.textContent = customTexts['clickButton'];
+    if (customTexts['openBoxButton'] && openBoxButton) openBoxButton.textContent = customTexts['openBoxButton'];
 }
 
-// Apply language
-function applyLanguage(lang) {
-    settings.language = lang;
-    localStorage.setItem('settings', JSON.stringify(settings));
+// Initialize text editing functionality
+function initializeTextEditing() {
+    // Make text elements editable (excluding functional buttons)
+    const editableSelectors = [
+        'h1', 'h2', 'h3', 'p', 'label', 'span'
+    ];
     
-    const t = translations[lang] || translations.traditional;
+    // List of button IDs that should not be editable (functional buttons)
+    const nonEditableButtons = ['settingsBtn', 'closeSettings', 'closeScanner', 'clickButton', 'openBoxButton', 'openBagBtn', 'noRocksConfirmBtn', 'rockInfoConfirmBtn'];
     
-    // Update page title
-    document.title = t.title;
-    
-    // Update static text elements
-    if (settingsBtn) settingsBtn.textContent = t.settingsBtn;
-    if (greeting) greeting.textContent = t.greeting;
-    if (message) message.textContent = t.message;
-    if (openBagBtn) openBagBtn.textContent = t.openBagBtn;
-    if (button) button.textContent = t.collectButton;
-    if (openBoxButton) openBoxButton.textContent = t.openBoxButton;
-    
-    // Update scanner modal
-    const scannerTitle = document.querySelector('.scanner-header h2');
-    if (scannerTitle) scannerTitle.textContent = t.scanQR;
-    const scannerHint = document.querySelector('.scanner-hint');
-    if (scannerHint) scannerHint.textContent = t.scanHint;
-    
-    // Update settings modal
-    const settingsTitle = document.querySelector('.settings-header h2');
-    if (settingsTitle) settingsTitle.textContent = t.settings;
-    const fontSizeLabel = document.querySelectorAll('.setting-item label')[0];
-    if (fontSizeLabel) fontSizeLabel.textContent = t.fontSize;
-    const languageLabel = document.querySelectorAll('.setting-item label')[1];
-    if (languageLabel) languageLabel.textContent = t.language;
-    
-    // Update setting option buttons
-    document.querySelectorAll('.setting-option[data-setting="fontSize"]').forEach((btn, index) => {
-        const values = ['large', 'medium', 'small'];
-        btn.textContent = t[values[index]];
+    editableSelectors.forEach(selector => {
+        document.querySelectorAll(selector).forEach(element => {
+            element.style.cursor = 'text';
+            element.setAttribute('contenteditable', 'true');
+            element.setAttribute('data-editable', 'true');
+            
+            // Add visual feedback
+            element.addEventListener('focus', function() {
+                this.style.outline = '2px dashed #3498db';
+                this.style.backgroundColor = 'rgba(52, 152, 219, 0.1)';
+            });
+            
+            element.addEventListener('blur', function() {
+                this.style.outline = 'none';
+                this.style.backgroundColor = 'transparent';
+                
+                // Save the edited text
+                const elementId = this.id || this.className || this.tagName.toLowerCase();
+                customTexts[elementId] = this.textContent;
+                localStorage.setItem('customTexts', JSON.stringify(customTexts));
+            });
+        });
     });
     
-    document.querySelectorAll('.setting-option[data-setting="language"]').forEach((btn, index) => {
-        const values = ['traditional', 'simplified', 'english'];
-        btn.textContent = t[values[index]];
+    // Make buttons editable but prevent click when editing
+    document.querySelectorAll('button').forEach(button => {
+        if (!nonEditableButtons.includes(button.id)) {
+            button.style.cursor = 'text';
+            button.setAttribute('contenteditable', 'true');
+            
+            // Prevent button click when editing
+            let isEditing = false;
+            button.addEventListener('mousedown', function(e) {
+                if (e.detail === 2) { // Double click
+                    isEditing = true;
+                    setTimeout(() => { isEditing = false; }, 100);
+                }
+            });
+            
+            button.addEventListener('click', function(e) {
+                if (isEditing || document.activeElement === this) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+            });
+            
+            button.addEventListener('focus', function() {
+                this.style.outline = '2px dashed #3498db';
+                this.style.backgroundColor = 'rgba(52, 152, 219, 0.1)';
+            });
+            
+            button.addEventListener('blur', function() {
+                this.style.outline = 'none';
+                this.style.backgroundColor = '';
+                
+                // Save the edited text
+                const elementId = this.id || this.className;
+                if (elementId) {
+                    customTexts[elementId] = this.textContent;
+                    localStorage.setItem('customTexts', JSON.stringify(customTexts));
+                }
+            });
+        }
     });
-    
-    // Update collected items header
-    const collectedHeader = document.querySelector('.rocks-content h3');
-    if (collectedHeader) collectedHeader.textContent = t.collectedItems;
-    
-    // Update empty message
-    const emptyMsg = document.querySelector('.no-rocks-message p');
-    if (emptyMsg) emptyMsg.textContent = t.emptyMessage;
-    if (noRocksConfirmBtn) noRocksConfirmBtn.textContent = t.confirm;
-    if (rockInfoConfirmBtn) rockInfoConfirmBtn.textContent = t.confirm;
-    
-    // Reinitialize rocks display to update names
-    initializeRocks();
-    
-    // Update progress text
-    updateProgress();
 }
 
 // Open settings modal
@@ -303,8 +213,6 @@ function handleSettingChange(setting, value) {
     if (setting === 'fontSize') {
         document.body.className = document.body.className.replace(/font-size-\w+/g, '');
         document.body.classList.add(`font-size-${value}`);
-    } else if (setting === 'language') {
-        applyLanguage(value);
     }
     
     updateSettingButtons();
@@ -313,7 +221,15 @@ function handleSettingChange(setting, value) {
 // Initialize the rocks display
 function initializeRocks() {
     rocksGrid.innerHTML = '';
-    const t = translations[settings.language] || translations.traditional;
+    
+    // Default rock names (can be edited by user)
+    const defaultRockNames = {
+        'Thunderheart': '雷霆魔法石',
+        'Frostveil': '冰霜魔法石',
+        'Vinescourge': '毒藤魔法石',
+        'Shadow Abyss': '暗影魔法石',
+        'Lumen Grace': '光輝魔法石'
+    };
     
     // Only show collected rocks
     MAGIC_ROCKS.forEach((rock, index) => {
@@ -325,18 +241,36 @@ function initializeRocks() {
             rockSlot.className = 'rock-slot collected';
             rockSlot.dataset.rock = rock.key;
             
-            const rockInfo = t.rocks[rock.key] || { name: rock.key, description: '' };
+            const rockName = customTexts[`rock-${rock.key}-name`] || defaultRockNames[rock.key] || rock.key;
+            const rockStatus = customTexts['rock-status'] || '已收集';
             
             rockSlot.innerHTML = `
                 <div class="rock-icon">${rock.icon}</div>
-                <div class="rock-name">${rockInfo.name}</div>
-                <div class="rock-status">${t.status}</div>
+                <div class="rock-name" data-rock-key="${rock.key}">${rockName}</div>
+                <div class="rock-status">${rockStatus}</div>
             `;
             
             // Add click event for collected rocks
             rockSlot.style.cursor = 'pointer';
-            rockSlot.addEventListener('click', function() {
+            rockSlot.addEventListener('click', function(e) {
+                // Don't trigger if clicking on editable text
+                if (e.target.contentEditable === 'true') return;
                 showRockInfo(rock);
+            });
+            
+            // Make rock name editable
+            const rockNameElement = rockSlot.querySelector('.rock-name');
+            rockNameElement.setAttribute('contenteditable', 'true');
+            rockNameElement.style.cursor = 'text';
+            rockNameElement.addEventListener('focus', function() {
+                this.style.outline = '2px dashed #3498db';
+                this.style.backgroundColor = 'rgba(52, 152, 219, 0.1)';
+            });
+            rockNameElement.addEventListener('blur', function() {
+                this.style.outline = 'none';
+                this.style.backgroundColor = 'transparent';
+                customTexts[`rock-${rock.key}-name`] = this.textContent;
+                localStorage.setItem('customTexts', JSON.stringify(customTexts));
             });
             
             rocksGrid.appendChild(rockSlot);
@@ -358,16 +292,16 @@ function initializeRocks() {
 // Update progress text
 function updateProgress() {
     const count = collectedRocks.length;
-    const t = translations[settings.language] || translations.traditional;
-    progressText.textContent = `${t.progress}: ${count}/5`;
+    const progressLabel = customTexts['progress-label'] || '進度';
+    progressText.textContent = `${progressLabel}: ${count}/5`;
 }
 
 // Check if box should open
 function checkBoxOpening() {
     if (collectedRocks.length === 5) {
         pandoraBox.classList.add('box-open');
-        const t = translations[settings.language] || translations.traditional;
-        message.textContent = t.boxOpened;
+        const boxOpenedMsg = customTexts['box-opened'] || '恭喜！潘多拉盒子已打開！';
+        message.textContent = boxOpenedMsg;
         button.style.display = 'none';
         openBoxButton.style.display = 'block';
     } else {
@@ -390,13 +324,37 @@ function showRockInfo(rock) {
     // Hide confirm button initially
     rockInfoConfirmBtn.style.display = 'none';
     
-    const t = translations[settings.language] || translations.traditional;
-    const rockInfo = t.rocks[rock.key] || { name: rock.key, description: '' };
+    const defaultRockNames = {
+        'Thunderheart': '雷霆魔法石',
+        'Frostveil': '冰霜魔法石',
+        'Vinescourge': '毒藤魔法石',
+        'Shadow Abyss': '暗影魔法石',
+        'Lumen Grace': '光輝魔法石'
+    };
+    
+    const defaultDescriptions = {
+        'Thunderheart': '蘊含狂暴雷電之力，能瞬間喚醒沉睡的力量，象徵速度與決斷。',
+        'Frostveil': '散發極寒氣息，可凍結時間般地減緩一切變化，象徵冷靜與理智。',
+        'Vinescourge': '以暗綠毒霧纏繞，能腐蝕束縛敵人，也提醒持有者慎用其力。',
+        'Shadow Abyss': '如深淵般吸收光芒，讓持有者在黑暗中隱匿身形，象徵秘密與未知。',
+        'Lumen Grace': '綻放聖潔光芒，能淨化邪惡與治癒創傷，象徵希望與重生。'
+    };
+    
+    const rockName = customTexts[`rock-${rock.key}-name`] || defaultRockNames[rock.key] || rock.key;
+    const rockDescription = customTexts[`rock-${rock.key}-description`] || defaultDescriptions[rock.key] || '';
     
     // Set content
-    rockInfoImage.alt = rockInfo.name;
-    rockInfoName.textContent = rockInfo.name;
-    rockInfoDescription.textContent = rockInfo.description;
+    rockInfoImage.alt = rockName;
+    rockInfoName.textContent = rockName;
+    rockInfoDescription.textContent = rockDescription;
+    
+    // Make description editable
+    rockInfoDescription.setAttribute('contenteditable', 'true');
+    rockInfoDescription.style.cursor = 'text';
+    rockInfoDescription.addEventListener('blur', function() {
+        customTexts[`rock-${rock.key}-description`] = this.textContent;
+        localStorage.setItem('customTexts', JSON.stringify(customTexts));
+    });
     
     // Show modal first
     rockInfoModal.classList.add('active');
@@ -446,8 +404,8 @@ function openScanner() {
         }
     ).catch((err) => {
         console.error("Unable to start scanning", err);
-        const t = translations[settings.language] || translations.traditional;
-        showMessage(t.cameraError, 'error');
+        const errorMsg = customTexts['camera-error'] || '無法啟動相機，請檢查權限設定';
+        showMessage(errorMsg, 'error');
         closeScannerModal();
     });
 }
@@ -477,12 +435,19 @@ function handleScannedCode(scannedText) {
     );
     
     if (rock) {
-        const t = translations[settings.language] || translations.traditional;
-        const rockInfo = t.rocks[rock.key] || { name: rock.key };
+        const defaultRockNames = {
+            'Thunderheart': '雷霆魔法石',
+            'Frostveil': '冰霜魔法石',
+            'Vinescourge': '毒藤魔法石',
+            'Shadow Abyss': '暗影魔法石',
+            'Lumen Grace': '光輝魔法石'
+        };
+        const rockName = customTexts[`rock-${rock.key}-name`] || defaultRockNames[rock.key] || rock.key;
+        const alreadyCollectedMsg = customTexts['already-collected'] || '已經收集過了！';
         
         // Check if already collected
         if (collectedRocks.includes(rock.key)) {
-            showMessage(`${rockInfo.name} ${t.alreadyCollected}`, 'info');
+            showMessage(`${rockName} ${alreadyCollectedMsg}`, 'info');
             return;
         }
         
@@ -502,16 +467,16 @@ function handleScannedCode(scannedText) {
         }, 500);
         
     } else {
-        const t = translations[settings.language] || translations.traditional;
-        showMessage(t.invalidRock, 'error');
+        const invalidMsg = customTexts['invalid-rock'] || '無效的魔法石！';
+        showMessage(invalidMsg, 'error');
     }
 }
 
 // Event Listeners
 button.addEventListener('click', function() {
     if (collectedRocks.length >= 5) {
-        const t = translations[settings.language] || translations.traditional;
-        showMessage(t.allCollected, 'success');
+        const allCollectedMsg = customTexts['all-collected'] || '所有魔法石已收集完成！';
+        showMessage(allCollectedMsg, 'success');
         return;
     }
     openScanner();

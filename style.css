@@ -365,6 +365,31 @@ button:active {
     z-index: 1;
 }
 
+.box-container {
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-image {
+    max-width: 100%;
+    height: auto;
+    max-height: 200px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    object-fit: contain;
+}
+
+.bag-title {
+    font-size: 2rem;
+    margin: 1rem 0;
+    color: #2c3e50;
+    line-height: 1.2;
+    word-wrap: break-word;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 /* Open Bag Button */
 .open-bag-btn {
     background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);

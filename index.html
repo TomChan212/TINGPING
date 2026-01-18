@@ -21,16 +21,20 @@
         
         <!-- Rocks Collection Display -->
         <div class="rocks-container">
-            <div class="box-container">
-                <img src="justbox.png" alt="盒子" class="box-image">
-            </div>
             <div class="bag-container" id="bagContainer">
                 <div class="particles" id="particles"></div>
-                <img src="bag.png" alt="收集布袋" class="bag-image" id="bagImage">
+                <img src="justbox.png" alt="收集布袋" class="bag-image" id="bagImage">
             </div>
-            <h2 class="bag-title">收集布袋</h2>
             <button class="open-bag-btn" id="openBagBtn">打開收集布袋</button>
             <div class="rocks-content" id="rocksContent" style="display: none;">
+                <div class="box-container-opened" id="boxContainerOpened" style="display: none;">
+                    <img src="box.png" alt="盒子" class="box-image-opened" id="boxImageOpened">
+                </div>
+                <div class="bag-container-opened" id="bagContainerOpened" style="display: none;">
+                    <div class="particles-opened" id="particlesOpened"></div>
+                    <img src="justbox.png" alt="收集布袋" class="bag-image-opened" id="bagImageOpened">
+                </div>
+                <h2 class="bag-title-opened" id="bagTitleOpened" style="display: none;">收集布袋</h2>
                 <h3>已收集的物品</h3>
                 <div class="rocks-grid" id="rocksGrid">
                     <!-- Rocks will be dynamically generated -->
